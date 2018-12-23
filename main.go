@@ -24,14 +24,16 @@ func main() {
 		flag.PrintDefaults()
 	}
 
-	flag.Parse()
-	if flag.NArg() == 0 {
-		flag.Usage()
+	if len(os.Args) == 1 {
+		flag.PrintDefaults()
 		os.Exit(1)
 	}
 
+	flag.Parse()
+
 	if *strDestination == "" {
-		fmt.Println("destination cannot be empty")
+		fmt.Println("destination cannot be empty, usage:")
+		flag.PrintDefaults()
 		os.Exit(1)
 	}
 
