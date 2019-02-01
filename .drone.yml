@@ -11,5 +11,7 @@ steps:
   image: plugins/slack
   settings:
     webhook:
-      from_secret: slack_webhook
+      from_secret: slack_url
     channel: general
+    username: drone
+    icon_url: https://picsum.photos/256/256/?image=844
