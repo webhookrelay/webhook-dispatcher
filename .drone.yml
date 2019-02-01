@@ -8,10 +8,8 @@ steps:
     - go build
 
 - name: slack
-  image: webhookrelay/webhook-dispatcher:latest
-  environment:
-    DESTINATION:
+  image: plugins/slack
+  settings:
+    webhook:
       from_secret: slack_webhook
-  commands:  
-    - --body
-    - '{"response_type": "in_channel", "text": "Build complete"}'
+    channel: general
