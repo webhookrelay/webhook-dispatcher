@@ -12,7 +12,6 @@ steps:
   environment:
     DESTINATION:
       from_secret: slack_webhook
-  commands:
-    - webhook-dispatcher   
+  commands:  
     - -- body
     - '{"response_type": "in_channel", "text": "Build complete"}'    
