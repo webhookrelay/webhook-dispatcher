@@ -1,5 +1,7 @@
 # Webhook Dispatcher
 
+[![Build Status](https://drone-kr.webrelay.io/api/badges/webhookrelay/webhook-dispatcher/status.svg)](https://drone-kr.webrelay.io/webhookrelay/webhook-dispatcher)
+
 Simple webhook dispatcher that can be used in the pipelines. Targeted at container workloads where native webhooks aren't that easy to get or configure (looking at you Google Cloud Builder).
 
 ## Usage
