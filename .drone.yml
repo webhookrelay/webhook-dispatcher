@@ -1,5 +1,18 @@
-pipeline:
-  build:
-    image: golang:1.11.4
-    commands:
-      - go build
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: golang:1.11.4
+  commands:
+    - go build
+
+- name: slack
+  image: webhookrelay/webhook-dispatcher:latest
+  environment:
+    DESTINATION:
+      from_secret: slack_webhook
+  commands:
+    - webhook-dispatcher   
+    - -- body
+    - '{"response_type": "in_channel", "text": "Build complete"}'    

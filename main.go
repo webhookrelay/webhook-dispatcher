@@ -31,8 +31,8 @@ func main() {
 
 	flag.Parse()
 
-	if *strDestination == "" {
-		fmt.Println("destination cannot be empty, usage:")
+	if *strDestination == "" && os.Getenv("DESTINATION") == "" {
+		fmt.Println("both --destination flag and DESTINATION env variable cannot be empty, usage:")
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
@@ -59,7 +59,15 @@ func main() {
 		// something invalid
 	}
 
-	req, err := http.NewRequest(method, *strDestination, bytes.NewBufferString(*strBody))
+	var destination string
+	if *strDestination != "" {
+		destination = *strDestination
+	}
+	if os.Getenv("DESTINATION") != "" {
+		destination = os.Getenv("DESTINATION")
+	}
+
+	req, err := http.NewRequest(method, destination, bytes.NewBufferString(*strBody))
 	if err != nil {
 		fmt.Printf("failed to create request: %s \n", err)
 		os.Exit(1)
